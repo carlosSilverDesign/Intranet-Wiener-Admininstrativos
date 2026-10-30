@@ -1,0 +1,629 @@
+/* ==========================================================================
+   PORTAL ADMINISTRATIVO - UNIVERSIDAD NORBERT WIENER
+   login.css (Estilos del Módulo de Acceso Administrativo - PROTOTIPO)
+   ========================================================================== */
+
+:root {
+  --primary: #0F848F;
+  --primary-hover: #0B6770;
+  --primary-light: #E6F4F5;
+  --primary-focus: rgba(15, 132, 143, 0.2);
+  --cyan-accent: #07C8CC;
+  --dark-teal: #083437;
+  --dark-teal-gradient: linear-gradient(180deg, #072F32 0%, #09393D 100%);
+  --text-dark: #1E293B;
+  --text-gray: #64748B;
+  --text-light: #94A3B8;
+  --border-default: #CBD5E1;
+  --border-focus: #0F848F;
+  --bg-page: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --font-heading: 'Lato', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* 1. RESET GENERAL */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 2. LAYOUT SPLIT-SCREEN */
+.login-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   3. PANEL IZQUIERDO: BRANDING INSTITUCIONAL (FONDO LIMPIO SIN PATTERNS)
+   ========================================================================== */
+.brand-panel {
+  position: relative;
+  flex: 1 1 50%;
+  max-width: 52%;
+  background: var(--dark-teal-gradient);
+  color: #FFFFFF;
+  padding: 52px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+}
+
+.brand-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+/* Cabecera del panel izquierdo con Logo y Tag de Prototipo */
+.brand-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Logo Norbert Wiener */
+.brand-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-logo-icon {
+  width: auto;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.brand-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-logo-text .univ {
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #E2E8F0;
+  letter-spacing: 0.3px;
+}
+
+.brand-logo-text .name {
+  font-family: var(--font-heading);
+  font-size: 18.5px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.2px;
+}
+
+/* Badge de Prototipo Institucional */
+.prototype-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(7, 200, 204, 0.12);
+  border: 1px solid rgba(7, 200, 204, 0.45);
+  color: #07C8CC;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #07C8CC;
+  box-shadow: 0 0 8px #07C8CC;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(7, 200, 204, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 7px rgba(7, 200, 204, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(7, 200, 204, 0);
+  }
+}
+
+/* Bloque Central Hero */
+.brand-hero {
+  margin: 48px 0;
+  max-width: 520px;
+}
+
+.brand-hero h1 {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.brand-hero p {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #E2E8F0;
+  margin-bottom: 36px;
+  opacity: 0.95;
+}
+
+/* Lista de Módulos Administrativos */
+.brand-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brand-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14.5px;
+  color: #F1F5F9;
+  font-weight: 400;
+}
+
+.feature-icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--cyan-accent);
+}
+
+.feature-icon-badge svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Footer del panel izquierdo */
+.brand-footer {
+  font-size: 12.5px;
+  color: #94A3B8;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+/* ==========================================================================
+   4. PANEL DERECHO: FORMULARIO DE ACCESO ADMIN (PROTOTIPO)
+   ========================================================================== */
+.login-panel {
+  flex: 1 1 50%;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Aviso de Prototipo en la tarjeta */
+.prototype-notice {
+  margin-bottom: 16px;
+}
+
+.prototype-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #FFFBEB;
+  border: 1px solid #FCD34D;
+  color: #B45309;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.prototype-pill svg {
+  color: #D97706;
+}
+
+/* Encabezado */
+.login-header {
+  margin-bottom: 24px;
+}
+
+.login-header h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.login-header p {
+  font-size: 14px;
+  color: var(--text-gray);
+  line-height: 1.5;
+}
+
+/* 5. SELECTOR DE PERFIL (EXCLUSIVO ADMINISTRATIVO) */
+.profile-selection-group {
+  margin-bottom: 22px;
+}
+
+.profile-group-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-gray);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.profile-cards-container {
+  display: flex;
+  gap: 12px;
+}
+
+/* Tarjeta Perfil Administrativo Activa */
+.profile-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 4px 14px rgba(15, 132, 143, 0.08);
+}
+
+.profile-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-avatar-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(15, 132, 143, 0.15);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-avatar-box svg {
+  width: 20px;
+  height: 20px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-role-name {
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.profile-role-sub {
+  font-size: 12px;
+  color: var(--text-gray);
+}
+
+.profile-badge-role {
+  background: var(--primary);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* 6. CAMPOS DE FORMULARIO */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-box input {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dark);
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: var(--transition);
+}
+
+.input-box input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--primary-focus);
+}
+
+.input-box input::placeholder {
+  color: var(--text-light);
+}
+
+/* Botón Ver/Ocultar Contraseña */
+.btn-toggle-eye {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.btn-toggle-eye:hover {
+  color: var(--primary);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.btn-toggle-eye svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* 7. BOTÓN PRINCIPAL INGRESAR */
+.btn-submit-login {
+  height: 46px;
+  margin-top: 6px;
+  background-color: var(--primary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(15, 132, 143, 0.2);
+}
+
+.btn-submit-login:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(15, 132, 143, 0.28);
+}
+
+.btn-submit-login:active {
+  transform: translateY(0);
+}
+
+/* Spinner de carga */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 8. BANNER PROTOTIPO RÁPIDO */
+.demo-banner-box {
+  margin-top: 20px;
+  padding: 12px 16px;
+  background-color: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.demo-banner-text {
+  font-size: 12px;
+  color: #1E40AF;
+  line-height: 1.4;
+}
+
+.demo-banner-text strong {
+  color: #1D4ED8;
+  font-weight: 700;
+}
+
+.btn-demo-action {
+  background: #DBEAFE;
+  border: 1px solid #93C5FD;
+  color: #1D4ED8;
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-demo-action:hover {
+  background: #BFDBFE;
+  color: #1E3A8A;
+}
+
+/* 9. DESTINO POST-LOGIN INFORMATIVO */
+.login-footer-info {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.login-footer-info svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   10. RESPONSIVE DESIGN (TABLETS Y MÓVILES)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .login-wrapper {
+    flex-direction: column;
+  }
+
+  .brand-panel {
+    max-width: 100%;
+    padding: 36px 28px;
+  }
+
+  .brand-hero {
+    margin: 28px 0;
+  }
+
+  .brand-hero h1 {
+    font-size: 28px;
+  }
+
+  .brand-features {
+    gap: 12px;
+  }
+
+  .login-panel {
+    padding: 36px 20px 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-panel {
+    padding: 28px 20px;
+  }
+
+  .brand-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand-hero h1 {
+    font-size: 24px;
+  }
+
+  .brand-hero p {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .brand-features {
+    display: none;
+  }
+
+  .login-card {
+    max-width: 100%;
+  }
+
+  .login-header h2 {
+    font-size: 24px;
+  }
+}
